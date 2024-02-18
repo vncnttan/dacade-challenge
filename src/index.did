@@ -1,0 +1,41 @@
+type Company = record {
+    id: principal;
+    name: text;
+    location: text;
+    foundedDate: text;
+    linkedInLink: text;
+    image: blob;
+    openJobIds: vec principal; // reference to Job
+};
+
+type Job = record {
+    id: principal;
+    title: text;
+    location: text;
+    jobType: text;
+    description: text;
+    requirements: text;
+    company: principal; // reference to Company
+    issuerEmail: text;
+};
+
+type JobHiringError = variant {
+    JobNotFound: principal;
+    CompanyNotFound: principal;
+};
+
+service: () -> {
+    createCompany: (name: text, location: text, foundedDate: text, linkedInLink: text, image: blob) -> (Company);
+    getCompanyById: (id: principal) -> (opt Company) query;
+    createJob: (title: text, location: text, jobtype: text, description: text, requirements: text, companyId: principal, issuerEmail: text) -> (variant {
+        Ok: Job;
+        Err: JobHiringError;
+    });
+    getJobById: (id: principal) -> (opt Job) query;
+    getJobsByCompany: (companyId: principal) -> (vec Job);
+    getJobs: () -> (vec Job) query;
+    deleteJob: (id: principal) -> (variant {
+        Ok: Job;
+        Err: JobHiringError;
+    });
+}
