@@ -17,6 +17,33 @@ The API systems offers the following services:
 Use dfx version 0.16.1 
 and typescript azle version 0.20.1
 
-1. npm install
-2. dfx start --clean --host 127.0.0.1:8000
-3. in another terminal, dfx deploy
+### Installation
+1. Clone this repository
+```
+git clone https://github.com/vncnttan/dacade-challenge.git
+```
+2. Use nvm and Node.js 20
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
+```
+nvm install 20
+```
+
+
+3. Make sure when you check the node version using `node --version` it shows `v20.x.x`
+
+4. Use dfx version 0.16.1
+```
+DFX_VERSION=0.16.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+```
+5. Run 
+```
+npm install
+```
+
+6. Make sure when running command `dfx --version` it gives `dfx 0.16.1`
+
+### Set Up
+1. in a WSL dfx start --clean --host 127.0.0.1:8000
+2. in another WSL terminal, dfx deploy
